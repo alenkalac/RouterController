@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity
     EditText activeText;
     ToggleButton button;
 
+    private int s_h, s_m, e_h, e_m, active;
+
     private SharedPreferences sharedPref;
 
     @Override
@@ -30,16 +32,21 @@ public class MainActivity extends AppCompatActivity
 
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
-        String startValue = sharedPref.getString(getString(R.string.start), "");
-        String endValue = sharedPref.getString(getString(R.string.end), "");
+        s_h = sharedPref.getInt(getString(R.string.start_hour), 0);
+        s_m = sharedPref.getInt(getString(R.string.start_min), 0);
+        e_h = sharedPref.getInt(getString(R.string.end_hour), 0);
+        e_m = sharedPref.getInt(getString(R.string.end_min), 0);
+
         int checked = sharedPref.getInt(getString(R.string.checked), 0);
 
+
+
         startText = (EditText)findViewById(R.id.pickStartTimeField);
-        startText.setText(startValue);
+        this.setTimeText(startText, s_h, s_m);
         startText.setOnClickListener(this);
 
         endText = (EditText)findViewById(R.id.pickEndTimeField);
-        endText.setText(endValue);
+        this.setTimeText(endText, e_h, e_m);
         endText.setOnClickListener(this);
 
         button = (ToggleButton)findViewById(R.id.toggleButton);
@@ -62,11 +69,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.pickStartTimeField :
                 Log.d("Switch", "Start Field");
                 activeText = this.startText;
+                active = 0;
                 tpd.show();
                 break;
             case R.id.pickEndTimeField :
                 Log.d("Switch", "End Field");
                 activeText = this.endText;
+                active = 1;
                 tpd.show();
                 break;
             case R.id.toggleButton :
@@ -79,25 +88,50 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void handleToggle() {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        if(button.isChecked()) {
-            Log.d("Button State", "State: Checked");
-            Log.d("Start Time", this.startText.getText().toString());
-            editor.putString(getString(R.string.start), this.startText.getText().toString());
-            editor.putString(getString(R.string.end), this.endText.getText().toString());
-            editor.putInt(getString(R.string.checked), 1);
-            editor.apply();
+        if(button.isChecked()){
+            saveData("start", s_h, s_m, 1);
+            saveData("end", e_h, e_m, 1);
         } else {
-            Log.d("Button State", "State: Unchecked");
-            editor.putInt(getString(R.string.checked), 0);
-            editor.apply();
+            markButtonChecked(0);
         }
+    }
+
+    private void saveData(String tag, int h, int m, int checked) {
+        Log.d("Button State", "State: " + checked);
+        Log.d("Time", h + ":" + m);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String str_hr = tag.equals("start") ? getString(R.string.start_hour) : getString(R.string.end_hour);
+        String str_min = tag.equals("start") ? getString(R.string.start_min) : getString(R.string.end_min);
+
+        editor.putInt(str_hr, h);
+        editor.putInt(str_min, m);
+        editor.apply();
+
+        markButtonChecked(checked);
+    }
+
+    public void markButtonChecked(int checked) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(getString(R.string.checked), checked);
+        editor.apply();
+    }
+
+    private void setTimeText(EditText field, int hours, int minutes) {
+        String h = (hours < 10) ? "0"+hours : ""+hours;
+        String m = (minutes < 10) ? "0"+minutes : ""+minutes;
+        field.setText(h + ":" + m);
     }
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hours, int minutes) {
-        String h = (hours < 10) ? "0"+hours : ""+hours;
-        String m = (minutes < 10) ? "0"+minutes : ""+minutes;
-        activeText.setText(h + ":" + m);
+        setTimeText(activeText, hours, minutes);
+
+        if(active == 0) {
+            s_h = hours;
+            s_m = minutes;
+        } else if(active == 1) {
+            e_h = hours;
+            e_m = minutes;
+        }
     }
 }

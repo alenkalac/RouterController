@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">Router Controller</string>
-    <string name="start">start</string>
-    <string name="end">end</string>
+    <string name="app_name">Router Control</string>
+    <string name="start_hour">start_hours</string>
+    <string name="start_min">start_minutes</string>
+    <string name="end_hour">end_hours</string>
+    <string name="end_min">end_minutes</string>
     <string name="checked">checked</string>
     <string name="item_name">Test</string>
+    <string name="item_settings">Settings</string>
 </resources>
