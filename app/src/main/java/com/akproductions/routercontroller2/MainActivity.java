@@ -19,11 +19,12 @@ public class MainActivity extends AppCompatActivity
     EditText activeText;
     ToggleButton button;
 
+    private SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         String startValue = sharedPref.getString(getString(R.string.start), "");
         String endValue = sharedPref.getString(getString(R.string.end), "");
         int checked = sharedPref.getInt(getString(R.string.checked), 0);
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.toggleButton :
                 Log.d("Switch", "Button");
                 this.handleToggle();
-
                 break;
             default :
                 break;
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void handleToggle() {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         if(button.isChecked()) {
             Log.d("Button State", "State: Checked");
