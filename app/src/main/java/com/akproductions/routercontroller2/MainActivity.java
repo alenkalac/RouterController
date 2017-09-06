@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -19,12 +21,15 @@ public class MainActivity extends AppCompatActivity
     EditText activeText;
     ToggleButton button;
 
-    private SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
         String startValue = sharedPref.getString(getString(R.string.start), "");
         String endValue = sharedPref.getString(getString(R.string.end), "");
         int checked = sharedPref.getInt(getString(R.string.checked), 0);
@@ -38,8 +43,15 @@ public class MainActivity extends AppCompatActivity
         endText.setOnClickListener(this);
 
         button = (ToggleButton)findViewById(R.id.toggleButton);
-        button.setChecked(checked == 0 ? false : true);
+        button.setChecked(checked!=0);
         button.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
     }
 
     @Override
@@ -74,13 +86,11 @@ public class MainActivity extends AppCompatActivity
             editor.putString(getString(R.string.start), this.startText.getText().toString());
             editor.putString(getString(R.string.end), this.endText.getText().toString());
             editor.putInt(getString(R.string.checked), 1);
-            editor.commit();
+            editor.apply();
         } else {
             Log.d("Button State", "State: Unchecked");
-            editor.putString(getString(R.string.start), "");
-            editor.putString(getString(R.string.end), "");
             editor.putInt(getString(R.string.checked), 0);
-            editor.commit();
+            editor.apply();
         }
     }
 
