@@ -2,6 +2,7 @@ package com.akproductions.routercontroller2;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -91,8 +92,10 @@ public class MainActivity extends AppCompatActivity
         if(button.isChecked()){
             saveData("start", s_h, s_m, 1);
             saveData("end", e_h, e_m, 1);
+            startService(new Intent(this, ScheduledService.class));
         } else {
             markButtonChecked(0);
+            OnTimeHandler.cancelAlarms(this);
         }
     }
 
