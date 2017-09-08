@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity
         button = (ToggleButton)findViewById(R.id.toggleButton);
         button.setChecked(checked!=0);
         button.setOnClickListener(this);
+
+        Button b = (Button) findViewById(R.id.button_test);
+        b.setOnClickListener(this);
     }
 
     @Override
@@ -82,6 +86,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.toggleButton :
                 Log.d("Switch", "Button");
                 this.handleToggle();
+                break;
+            case R.id.button_test :
+                Intent i = new Intent(this, TelnetService.class);
+                startService(i);
                 break;
             default :
                 break;
