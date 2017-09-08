@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         button.setChecked(checked!=0);
         button.setOnClickListener(this);
 
-        Button b = (Button) findViewById(R.id.button_test);
+        Button b = (Button) findViewById(R.id.turnOnBtn);
         b.setOnClickListener(this);
     }
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
                 Log.d("Switch", "Button");
                 this.handleToggle();
                 break;
-            case R.id.button_test :
+            case R.id.turnOnBtn :
                 Intent i = new Intent(this, TelnetService.class);
                 startService(i);
                 break;
