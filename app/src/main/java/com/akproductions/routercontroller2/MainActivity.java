@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        sharedPref = this.getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
         s_h = sharedPref.getInt(getString(R.string.start_hour), 0);
         s_m = sharedPref.getInt(getString(R.string.start_min), 0);
@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity
         e_m = sharedPref.getInt(getString(R.string.end_min), 0);
 
         int checked = sharedPref.getInt(getString(R.string.checked), 0);
-
-
 
         startText = (EditText)findViewById(R.id.pickStartTimeField);
         this.setTimeText(startText, s_h, s_m);
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity
         if(button.isChecked()){
             saveData("start", s_h, s_m, 1);
             saveData("end", e_h, e_m, 1);
-            startService(new Intent(this, ScheduledService.class));
+            OnTimeHandler.scheduleAlarms(this);
         } else {
             markButtonChecked(0);
             OnTimeHandler.cancelAlarms(this);

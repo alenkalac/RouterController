@@ -19,12 +19,11 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".OnTimeHandler" />
+        <receiver android:name=".OnTimeHandler" android:enabled="true"/>
 
-        <service android:name=".ScheduledService" />
         <service
             android:name=".TelnetService"
-            android:exported="false"></service>
+            android:enabled="true"></service>
     </application>
 
 </manifest>
