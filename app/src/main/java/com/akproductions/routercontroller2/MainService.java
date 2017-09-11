@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
+import com.akproductions.routercontroller2.managers.MyAlarmManager;
+
 public class MainService extends IntentService {
 
     public MainService() {
@@ -12,7 +14,7 @@ public class MainService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        OnTimeHandler.scheduleAlarms(this);
+        MyAlarmManager.scheduleAlarms(this);
         Log.d("MainService", "ON_HANDLE_INTENT");
     }
 }

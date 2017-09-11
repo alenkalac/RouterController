@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
+import com.akproductions.routercontroller2.managers.MyAlarmManager;
+
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, TimePickerDialog.OnTimeSetListener {
 
@@ -98,10 +100,10 @@ public class MainActivity extends AppCompatActivity
         if(button.isChecked()){
             saveData("start", s_h, s_m, 1);
             saveData("end", e_h, e_m, 1);
-            OnTimeHandler.scheduleAlarms(this);
+            MyAlarmManager.scheduleAlarms(this);
         } else {
             markButtonChecked(0);
-            OnTimeHandler.cancelAlarms(this);
+            MyAlarmManager.cancelAlarms(this);
         }
     }
 
