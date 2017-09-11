@@ -26,29 +26,6 @@ public class OnTimeHandler extends WakefulBroadcastReceiver {
        //TODO: Implement Restart alarm after reboot.
     }
 
-    static void test(Context context) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 25);
-        c.set(Calendar.SECOND, 0);
-
-        //context.startService(new Intent(context, ScheduledService.class));
-        //ScheduledService.showNotification2(context);
-
-        SharedPreferences s = context.getSharedPreferences("hour", Context.MODE_PRIVATE);
-        int start_hour = s.getInt("start_hours", 0);
-        int start_minutes = s.getInt("start_minutes", 0);
-        int end_hours = s.getInt("end_hours", 0);
-        int end_minutes = s.getInt("end_minutes", 0);
-
-        AlarmManager mgr=
-                (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i=new Intent(context, OnTimeHandler.class);
-        pi=PendingIntent.getBroadcast(context, 5646, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        mgr.setRepeating(AlarmManager.RTC_WAKEUP,
-                c.getTimeInMillis(), PERIOD, pi);
-    }
-
     static void scheduleAlarms(Context context) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, 0);
