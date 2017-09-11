@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity
 
         Button b = (Button) findViewById(R.id.turnOnBtn);
         b.setOnClickListener(this);
+
     }
 
     @Override
@@ -144,5 +146,16 @@ public class MainActivity extends AppCompatActivity
             e_h = hours;
             e_m = minutes;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
