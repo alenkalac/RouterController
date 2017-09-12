@@ -3,6 +3,7 @@ package com.akproductions.routercontroller2;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 /**
@@ -20,8 +21,11 @@ public class TelnetService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d("TelnetService", "OnHandleIntent");
-        Telnet telnet = new Telnet("192.168.1.254", getString(R.string.username), getString(R.string.password));
+        SharedPreferences pref = getSharedPreferences("MyData", MODE_PRIVATE);
+        String host = pref.getString("host", "");
+        String username = pref.getString("username", "");
+        String password = pref.getString("password", "");
+        Telnet telnet = new Telnet(host, username, password);
     }
 
 
