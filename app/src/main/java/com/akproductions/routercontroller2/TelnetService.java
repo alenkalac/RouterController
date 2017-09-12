@@ -21,11 +21,13 @@ public class TelnetService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        SharedPreferences pref = getSharedPreferences("MyData", MODE_PRIVATE);
-        String host = pref.getString("host", "");
-        String username = pref.getString("username", "");
-        String password = pref.getString("password", "");
+        String extra = intent.getStringExtra("status");
+        Pref pref = new Pref(this);
+        String host = pref.getString("host");
+        String username = pref.getString("username");
+        String password = pref.getString("password");
         Telnet telnet = new Telnet(host, username, password);
+        telnet.sendCommand("adsl connection --" + extra);
     }
 
 

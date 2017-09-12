@@ -30,7 +30,7 @@ public class Telnet {
             System.out.println(readUntil(">"));
             write("help");
             System.out.println(readUntil(">"));
-            readAll();
+            //readAll();
 
         } catch (IOException e) {
             Log.d("TELNET EXCEPTION", "BAD STUFF HAPPENED MAN");
@@ -55,7 +55,7 @@ public class Telnet {
     public String sendCommand(String command) {
         try {
             write(command);
-            return readUntil(">" + " ");
+            return readUntil(">");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -15,20 +15,20 @@
         android:layout_width="0dp"
         android:layout_height="46dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginStart="28dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/host_ip"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="52dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="@string/host_ip"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <EditText
         android:id="@+id/username_input"
@@ -37,18 +37,18 @@
         android:layout_marginBottom="76dp"
         android:layout_marginTop="75dp"
         android:ems="10"
+        android:hint="@string/username_input"
         android:inputType="textPersonName"
-        android:text="@string/username_input"
         app:layout_constraintBottom_toBottomOf="@+id/password_input"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/host"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_constraintTop_creator="1" />
 
     <EditText
         android:id="@+id/password_input"
@@ -56,15 +56,15 @@
         android:layout_height="46dp"
         android:layout_marginTop="203dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/password_input"
+        android:hint="@string/password_input"
+        android:inputType="textPassword"
+        android:maxLines="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        android:maxLines="1" />
+        tools:layout_constraintTop_creator="1" />
 
     <Button
         android:id="@+id/buttonSave"

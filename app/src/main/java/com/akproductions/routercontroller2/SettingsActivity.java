@@ -43,6 +43,12 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         this.host = (EditText)findViewById(R.id.host);
         this.username = (EditText)findViewById(R.id.username_input);
         this.password = (EditText)findViewById(R.id.password_input);
+
+        Pref pref = new Pref(this);
+
+        this.host.setText(pref.getString("host"));
+        this.username.setText(pref.getString("username"));
+        this.password.setText(pref.getString("password"));
     }
 
     @Override
@@ -59,11 +65,10 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void saveSettings() {
-        SharedPreferences.Editor pref = getSharedPreferences("MyData", MODE_PRIVATE).edit();
+        Pref pref = new Pref(this);
         pref.putString("host", this.host.getText().toString());
         pref.putString("username", this.username.getText().toString());
         pref.putString("password", this.password.getText().toString());
-        pref.apply();
 
         Toast.makeText(this, "Settings Saved", Toast.LENGTH_LONG).show();
 
