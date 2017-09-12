@@ -14,7 +14,7 @@ public class MainService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        MyAlarmManager.scheduleAlarms(this);
+        //MyAlarmManager.scheduleAlarms(this);
         Log.d("MainService", "ON_HANDLE_INTENT");
     }
 }

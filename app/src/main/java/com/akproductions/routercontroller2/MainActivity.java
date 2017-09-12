@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
         }
         saveData("start", s_h, s_m, 1);
         saveData("end", e_h, e_m, 1);
-        MyAlarmManager.scheduleAlarms(this);
+        MyAlarmManager.scheduleAlarms(this, MyAlarmManager.MODE.BOTH, false);
         markButtonChecked(1);
     }
 

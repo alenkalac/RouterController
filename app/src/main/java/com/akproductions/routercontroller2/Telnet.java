@@ -27,9 +27,6 @@ public class Telnet {
             write(username);
             System.out.println(readUntil("Password:"));
             write(password);
-            System.out.println(readUntil(">"));
-            write("help");
-            System.out.println(readUntil(">"));
             //readAll();
 
         } catch (IOException e) {
@@ -95,5 +92,10 @@ public class Telnet {
         }
     }
 
+    public void close() {
+        try {
+            socket.close();
+        } catch (IOException e) {}
+    }
 
 }
