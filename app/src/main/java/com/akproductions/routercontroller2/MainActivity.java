@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public static Context getContext() {
+        return MainActivity.getContext();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
